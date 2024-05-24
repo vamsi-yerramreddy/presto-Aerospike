@@ -98,4 +98,13 @@ public class AerospikeClient {
         }
         return schemasBuilder.build();
     }
+
+    public int getRecordCount() {
+        return 0;
+
+    }
+
+    public <E> List<E> getCurrentRecord(int currentPosition) {
+        return null;
+    }
 }

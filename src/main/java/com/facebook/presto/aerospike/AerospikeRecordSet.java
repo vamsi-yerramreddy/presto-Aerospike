@@ -13,7 +13,6 @@ public class AerospikeRecordSet implements RecordSet {
 
     private final List<AerospikeColumnHandle> columnhandles;
     private final List<Type> columnTypes;
-   // private final Object datasource;
 
     public AerospikeRecordSet(
             AerospikeSplit split, List<AerospikeColumnHandle> columnhandles)
@@ -33,15 +32,17 @@ public class AerospikeRecordSet implements RecordSet {
     public List<Type> getColumnTypes() {
         return columnTypes;
     }
-
     @Override
     public RecordCursor cursor() {
-        return ;
-        /*
-        try{
-            return new AerospikeRecordCursor(columnhandles,schema);
-        }catch (Exception e){
+        try {
+            // Create an AerospikeRecordSet using the column handles and schema
+            AerospikeRecordSet recordSet = new AerospikeRecordSet(null,null);
+            // Return the cursor from the record set
+            return recordSet.cursor();
+        } catch (Exception e) {
             throw new RuntimeException(e);
-        } */
+        }
     }
+
+
 }
