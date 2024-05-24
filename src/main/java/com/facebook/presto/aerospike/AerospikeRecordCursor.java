@@ -10,7 +10,7 @@ import java.util.List;
 public class AerospikeRecordCursor implements RecordCursor {
 
     private final List<AerospikeColumnHandle> columnHandles;
-    private final AerospikeClient aerospikeClient; // Assuming you have a client to interact with Aerospike
+    private final AerospikeClient aerospikeClient;
     private int currentPosition = -1; // Tracks the current position of the cursor
 
     public AerospikeRecordCursor(List<AerospikeColumnHandle> columnHandles, AerospikeClient aerospikeClient) {
@@ -20,13 +20,11 @@ public class AerospikeRecordCursor implements RecordCursor {
 
     @Override
     public long getCompletedBytes() {
-        // Not applicable for this implementation
         return 0;
     }
 
     @Override
     public long getReadTimeNanos() {
-        // Not applicable for this implementation
         return 0;
     }
 
@@ -38,20 +36,18 @@ public class AerospikeRecordCursor implements RecordCursor {
     @Override
     public boolean advanceNextPosition() {
         currentPosition++;
-        return currentPosition < aerospikeClient.getRecordCount(); // Assuming you have a method to get the total record count
+        return currentPosition < aerospikeClient.getRecordCount();
     }
 
     @Override
     public boolean getBoolean(int field) {
-        // Not applicable for this implementation
         return false;
     }
 
     @Override
     public long getLong(int field) {
-        // Assuming field represents an integer value in Aerospike
         AerospikeColumnHandle columnHandle = columnHandles.get(field);
-        return (Long) aerospikeClient.getCurrentRecord(currentPosition).get(columnHandle.getColumnName());
+        return 0;
     }
 
     @Override
